@@ -1,3 +1,3 @@
-This is a simple example to show multiple file uploads using node js and multer. This is just basic, it can be enhanced and customized further.
+This is a simple example to show file uploads using node js and multer. This is just the basic, it can be enhanced and customized further as per requirements.
 
-Instruction: create a directory /uploads for file upload in the root level.
+Instruction: create a directory /uploads at the root level to store uploaded files.
