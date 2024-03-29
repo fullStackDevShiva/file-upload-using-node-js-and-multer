@@ -1,14 +1,12 @@
 import express from "express";
 import cors from "cors";
-import bodyParser from "body-parser";
 import multer from "multer";
 
 const app = express();
 const port = 5001;
 
 //For cross-origin verification - we can add more options
-app.use(cors({ origin: "http://localhost:4200" }));
-// app.use(cors());
+app.use(cors({ origin: "http://localhost:3000" }));
 
 app.use(express.json());
 
@@ -16,13 +14,7 @@ app.listen(port, () => {
   console.log("Server is running");
 });
 
-app.get("/", (req, res) => {
-  res.send("Welcome to the server");
-});
-
-app.post("/upload-file", async (req, res, next) => {
-  console.log(req.params);
-
+app.post("/upload-file", async (req, res) => {
   const storage = multer.diskStorage({
     destination: (req, file, callback) => {
       callback(null, "uploads");
@@ -36,7 +28,6 @@ app.post("/upload-file", async (req, res, next) => {
   });
 
   const maxSize = 2000 * 1024 * 1024; //2000MB
-  // const maxSize = 180000; //180KB
 
   let fileFilter = function (req, file, callback) {
     var allowedMimes = [
@@ -106,7 +97,7 @@ app.post("/upload-file", async (req, res, next) => {
       console.log(
         `Success! - Original file: ${req.file.originalname} - Stored as: ${req.file.filename}`
       );
-
+  
       //   const insertedFile = new Topicfile({
       //     name: req.file.filename,
       //     file_path: req.file.destination,
